@@ -1,21 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './../styles/ParticipantsScreen.css';
 
-function ParticipantsScreen() {
-  // Definir o número de participantes, simulado aqui com uma lista de 10 participantes
-  const participants = Array(10).fill().map((_, index) => `Participant ${index + 1}`);
+function ParticipantsScreen({ highlightedComment }) {
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Calcular o número de colunas com base no número de participantes
-  const columns = Math.ceil(participants.length / 2); // Organiza em 2 linhas, ajustando o número de colunas
+  useEffect(() => {
+    if (highlightedComment) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false); // Ensuring fade-out when the highlightedComment is removed
+    }
+  }, [highlightedComment]);
+
+  const handleRemove = () => {
+    setIsVisible(false);
+  };
 
   return (
     <div className="participants-screen">
-      <div className="participants-grid" style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
-        {participants.map((participant, index) => (
+      {highlightedComment && (
+        <div
+          className={`highlighted-comment ${isVisible ? 'fade-in' : 'fade-out'}`}
+          onClick={handleRemove}
+          onAnimationEnd={() => {
+            if (!isVisible) setIsVisible(false);
+          }}
+        >
+          <div className="highlighted-comment-user">{highlightedComment.user}</div>
+          <div className="highlighted-comment-text">{highlightedComment.text}</div>
+        </div>
+      )}
+      <div className="participants-grid">
+        {Array(10).fill().map((_, index) => (
           <div key={index} className="participant">
             <div className="camera-container">
-              <div className="camera-placeholder">{participant}</div>
-              <div className="participant-name">{participant}</div>
+              <div className="camera-placeholder">Participant {index + 1}</div>
+              <div className="participant-name">Participant {index + 1}</div>
             </div>
           </div>
         ))}

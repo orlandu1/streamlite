@@ -114,3 +114,63 @@
     font-size: 8px;
   }
 }
+
+.highlighted-comment {
+  position: absolute;
+  bottom: 14%;
+  left: 35px;
+  transform: translateY(20px);
+  /* Começa com um deslocamento para baixo */
+  background-color: #fff;
+  color: #111;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+  z-index: 10;
+  opacity: 0;
+  /* Inicialmente invisível */
+  width: 76%;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  /* Suaviza a opacidade e movimento */
+}
+
+.highlighted-comment.fade-in {
+  opacity: 1; /* Visível */
+  transform: translateY(0); /* Move para a posição final */
+}
+
+.highlighted-comment.fade-out {
+  opacity: 0;
+  transform: translateY(20px);
+  transition-delay: 0.1s; /* Pequeno atraso para uma transição mais suave */
+}
+
+
+.highlighted-comment .message-icon {
+  margin-right: 10px;
+}
+
+.highlighted-comment .message-author {
+  font-weight: bold;
+  color: #111;
+  margin-right: 10px;
+}
+
+.highlighted-comment .message-text {
+  color: #111;
+  max-width: 80%;
+}
+
+.highlighted-comment-user {
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.highlighted-comment-text {
+  text-align: left;
+  font-size: 1em;
+}
