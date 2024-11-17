@@ -1,0 +1,32 @@
+/* App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background-color: #121212;
+  color: #fff;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Garantir que ocupe toda a altura da tela */
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  padding: 15px 20px 20px 20px;
+  gap: 20px;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+footer {
+  margin-top: auto; /* Faz o footer ficar na parte inferior da tela */
+}

@@ -1,0 +1,56 @@
+/* Controls.css */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.control-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #333;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100px;
+}
+
+.control-button:hover {
+  background-color: #444;
+}
+
+.control-button span {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.control-button svg {
+  margin-bottom: 5px;
+}
+.exit-button {
+  color: #d32f2f; /* Cor vermelha */
+}
+
+.exit-button:hover {
+  background-color: #c62828; /* Cor vermelha mais escura ao passar o mouse */
+  color: #fff; /* Cor vermelha */
+
+}
+/* Microfone Off */
+.control-button.muted {
+  background-color: #d32f2f; /* Vermelho quando o microfone estiver desligado */
+}
+
+/* Câmera Off */
+.control-button.camera-off {
+  background-color: #d32f2f; /* Amarelo quando a câmera estiver desligada */
+}
