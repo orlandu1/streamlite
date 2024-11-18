@@ -21,34 +21,61 @@
 
 .message {
   display: flex;
+  cursor: pointer;
   background-color: #2a2a2a;
   border-radius: 8px;
   padding: 10px;
-  align-items: flex-start; /* Ajuste para alinhar melhor a imagem e o texto */
+  align-items: flex-start;
+  /* Ajuste para alinhar melhor a imagem e o texto */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 100%;
-  overflow: hidden; /* Evita que o conteúdo extrapole o contêiner */
+  overflow: hidden;
+  /* Evita que o conteúdo extrapole o contêiner */
+}
+
+.message:hover {
+  filter: blur(0.5px);
+  border: solid 1px lime;
+}
+
+.message.pressed {
+  display: flex;
+  cursor: pointer;
+  background-color: #010042;
+  border: solid 1px lime;
+  border-radius: 8px;
+  padding: 10px;
+  align-items: flex-start;
+  /* Ajuste para alinhar melhor a imagem e o texto */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  overflow: hidden;
+  /* Evita que o conteúdo extrapole o contêiner */
 }
 
 .message-icon {
-  width: 40px;  /* Tamanho fixo para o avatar */
+  width: 40px;
+  /* Tamanho fixo para o avatar */
   height: 40px;
   margin-right: 10px;
   border-radius: 50%;
   overflow: hidden;
-  flex-shrink: 0;  /* Impede a compressão da imagem */
+  flex-shrink: 0;
+  /* Impede a compressão da imagem */
 }
 
 .message-icon img {
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* Garante que a imagem preencha o contêiner sem distorção */
+  object-fit: cover;
+  /* Garante que a imagem preencha o contêiner sem distorção */
 }
 
 .message-content {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;  /* Permite que o conteúdo da mensagem ocupe o restante do espaço */
+  flex-grow: 1;
+  /* Permite que o conteúdo da mensagem ocupe o restante do espaço */
 }
 
 .message-author {
@@ -60,10 +87,14 @@
 .message-text {
   color: #bbb;
   font-size: 14px;
-  word-wrap: break-word; /* Garante que o texto que ultrapassa a largura do contêiner quebre para a linha de baixo */
-  word-break: break-word; /* Garantir que palavras longas também quebrem corretamente */
-  max-width: 100%; /* Garantir que o texto não ultrapasse a largura máxima do contêiner */
-  overflow-wrap: break-word; /* Quebra o texto para evitar que ultrapasse o limite da caixa */
+  word-wrap: break-word;
+  /* Garante que o texto que ultrapassa a largura do contêiner quebre para a linha de baixo */
+  word-break: break-word;
+  /* Garantir que palavras longas também quebrem corretamente */
+  max-width: 100%;
+  /* Garantir que o texto não ultrapasse a largura máxima do contêiner */
+  overflow-wrap: break-word;
+  /* Quebra o texto para evitar que ultrapasse o limite da caixa */
 }
 
 .chat-input-container {

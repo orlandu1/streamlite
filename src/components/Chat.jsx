@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './../styles/Chat.css';
 
 function Chat() {
@@ -9,6 +9,7 @@ function Chat() {
     { user: 'Orlando', text: 'Ut sequi rerum non sunt nisi est fuga.', img: 'https://www.arita.com.br/wp-content/uploads/2020/08/pessoa-expansiva-principais-caracteristicas-desta-personalidade.jpg' },
   ]);
   const [highlightedComment, setHighlightedComment] = useState(null);
+  const [isFadingOut, setIsFadingOut] = useState(false);
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
@@ -16,7 +17,7 @@ function Chat() {
 
   const handleSendMessage = () => {
     if (message.trim()) {
-      setMessages([...messages, { user: 'You', text: message, img: 'https://via.placeholder.com/40' }]); // Adiciona imagem à nova mensagem
+      setMessages([...messages, { user: 'Você', text: message, img: 'https://via.placeholder.com/40' }]);
       setMessage('');
     }
   };
@@ -25,12 +26,21 @@ function Chat() {
     const clickedMessage = messages[index];
 
     if (highlightedComment === clickedMessage) {
-      setHighlightedComment(null); // Remove o comentário se já estiver destacado
+      setIsFadingOut(true); // Aciona o efeito de fade-out
+      setTimeout(() => {
+        setHighlightedComment(null); // Remove o comentário após a animação
+        setIsFadingOut(false); // Reseta o estado de fade-out
+      }, 500); // Tempo da animação
     } else {
       setHighlightedComment(clickedMessage); // Destaca uma nova mensagem
     }
   };
 
+  useEffect(() => {
+    if (highlightedComment) {
+      setIsFadingOut(false); // Assegura que o efeito de fade-out não interfere no fade-in
+    }
+  }, [highlightedComment]);
 
   return (
     <div className="chat">
@@ -38,11 +48,11 @@ function Chat() {
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`message ${highlightedComment === msg ? 'highlighted' : ''}`}
-            onClick={() => handleCommentClick(index)} // Adiciona evento de clique
+            className={`message ${highlightedComment === msg ? 'pressed' : ''}`}
+            onClick={() => handleCommentClick(index)}
           >
             <div className="message-icon">
-              <img src={msg.img} alt="User" /> {/* Exibe a imagem da mensagem */}
+              <img src={msg.img} alt="User" />
             </div>
             <div className="message-content">
               <div className="message-author">{msg.user}</div>
@@ -53,7 +63,7 @@ function Chat() {
       </div>
 
       {highlightedComment && (
-        <div className={`highlighted-comment ${highlightedComment ? 'fade-in' : 'fade-out'}`}>
+        <div className={`highlighted-comment ${isFadingOut ? 'fade-out' : 'fade-in'}`}>
           <div className="message-icon">
             <img src={highlightedComment.img} alt="User" />
           </div>
@@ -64,14 +74,13 @@ function Chat() {
         </div>
       )}
 
-
       <div className="chat-input-container">
         <input
           className="chat-input"
           type="text"
           value={message}
           onChange={handleMessageChange}
-          placeholder="Type your message..."
+          placeholder="Envie Sua Mensagem..."
         />
         <button onClick={handleSendMessage}>Send</button>
       </div>

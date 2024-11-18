@@ -13,14 +13,16 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      <TopBar />
-      <div className="main-content">
-        <ParticipantsScreen highlightedComment={highlightedComment} />
-        <Chat onCommentClick={handleCommentClick} />
+    <>
+      <div className="app-container">
+        <TopBar />
+        <div className="main-content">
+          <ParticipantsScreen highlightedComment={highlightedComment} />
+          <Chat onCommentClick={handleCommentClick} />
+        </div>
+        <Controls />
       </div>
-      <Controls />
-    </div>
+    </>
   );
 }
 

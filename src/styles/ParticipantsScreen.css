@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 82%;
+  width: 85%;
   /* padding: 20px; */
   flex-wrap: wrap;
   /* Permite o conteúdo se ajustar ao tamanho da tela */
@@ -114,38 +114,58 @@
     font-size: 8px;
   }
 }
-
+/* CSS - Animação do comentário com transição suave de subida */
 .highlighted-comment {
-  position: absolute;
-  bottom: 14%;
-  left: 35px;
-  transform: translateY(20px);
-  /* Começa com um deslocamento para baixo */
+  position: fixed;
+  left: 50px;
+  bottom: 14%; /* Inicialmente fora da tela */
   background-color: #fff;
   color: #111;
   padding: 20px;
   border-radius: 8px;
   text-align: left;
   z-index: 10;
-  opacity: 0;
-  /* Inicialmente invisível */
+  opacity: 0; /* Inicialmente invisível */
   width: 76%;
   display: flex;
   align-items: center;
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-  /* Suaviza a opacidade e movimento */
+  transform: translateY(20px); /* Inicialmente deslocado para baixo */
+  animation: fadein 1s ease-in-out forwards; /* Aplica animação para fade-in */
 }
 
-.highlighted-comment.fade-in {
-  opacity: 1; /* Visível */
-  transform: translateY(0); /* Move para a posição final */
+/* Animação de fade-in e movimento de baixo para cima */
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(50px); /* Começa mais abaixo */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* Chega na posição final */
+  }
 }
 
-.highlighted-comment.fade-out {
-  opacity: 0;
-  transform: translateY(20px);
-  transition-delay: 0.1s; /* Pequeno atraso para uma transição mais suave */
+/* Animação de fade-out e movimento para baixo */
+@keyframes fadeout {
+  from {
+    opacity: 1;
+    transform: translateY(0); /* Começa na posição final */
+  }
+  to {
+    opacity: 0;
+    transform: translateY(50px); /* Move para baixo ao desaparecer */
+  }
 }
+
+.fade-out {
+  animation: fadeout 0.5s ease-out forwards;
+}
+
+.fade-in {
+  animation: fadein 1s ease-in-out forwards;
+}
+
+
 
 
 .highlighted-comment .message-icon {
